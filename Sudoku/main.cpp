@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
         {
             printf("option c: %s\n", optarg);
             int n = atoi(optarg);
-            if (n < 1 || 0 > 1000000)
+            if (n < 1 || n > 1000000)
             {
                 printf("Parameters should range from 1 to 1000000\n");
                 return 0;
@@ -36,7 +36,7 @@ int main(int argc, char *argv[])
         {
             printf("option n: %s\n", optarg);
             int n = atoi(optarg);
-            if (n < 1 || 0 > 10000)
+            if (n < 1 || n > 10000)
             {
                 printf("Parameters should range from 1 to 1000000\n");
                 return 0;
