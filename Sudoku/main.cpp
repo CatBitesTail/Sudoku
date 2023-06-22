@@ -2,6 +2,8 @@
 #include <unistd.h>
 #include "create_final/create_final.h"
 #include "create_final/create_final.cpp"
+#include "create_game/create_game.h"
+#include "create_game/create_game.cpp"
 
 using namespace std;
 
@@ -31,8 +33,18 @@ int main(int argc, char *argv[])
             break;
         // 生成数独游戏：-n 100
         case 'n':
+        {
             printf("option n: %s\n", optarg);
+            int n = atoi(optarg);
+            if (n < 1 || 0 > 10000)
+            {
+                printf("Parameters should range from 1 to 1000000\n");
+                return 0;
+            }
+            // create_game(atoi(optarg));
+            game_generate2(atoi(optarg));
             break;
+        }
         // 生成数独游戏的难度：-m 1
         case 'm':
             printf("option m: %s\n", optarg);
