@@ -19,4 +19,5 @@ add_executable(test
         Sudoku/test.cpp
         Sudoku/src/board.cpp
         Sudoku/src/solve_game.cpp
+        Sudoku/src/utils.cpp
         )
