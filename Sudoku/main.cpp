@@ -39,8 +39,7 @@ int main(int argc, char *argv[])
                 printf("Parameters should range from 1 to 1000000\n");
                 return 0;
             }
-            // create_game(atoi(optarg));
-            game_generate2(atoi(optarg));
+             create_game(atoi(optarg));
             break;
         }
         // 生成数独游戏的难度：-m 1

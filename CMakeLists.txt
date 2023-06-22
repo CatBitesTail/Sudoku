@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.25)
+cmake_minimum_required(VERSION 3.23)
 project(Sudoku)
 
 set(CMAKE_CXX_STANDARD 14)
@@ -11,7 +11,9 @@ add_executable(Sudoku
         Sudoku/src/create_final.cpp
         Sudoku/src/create_game.cpp
         Sudoku/src/board.cpp
-        Sudoku/src/solve_game.cpp)
+        Sudoku/src/solve_game.cpp
+        Sudoku/src/utils.cpp
+        )
 
 add_executable(test
         Sudoku/test.cpp
