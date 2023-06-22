@@ -20,28 +20,29 @@ void Board::readBoard(string filename, int n) {
     {
         cout<<"cannot open the file"<<endl;
     }
-    cout<<"test"<<endl;
 
-    // 将前(n-1)*
+    // 将前(n-1)个board读出
     string temp;
 
-    int k = 1;
-    while(getline(file,temp) && k < line){
+    int k = 0;
+    while( k < line && getline(file,temp)){
         k++;
     }
 
-    for(int i = 0; i < 9;i++){
+    for(auto & i : arr){
         getline(file, temp);
         for(int j = 0; j < 9; j++){
-            arr[i][j] = temp[j] - '0' ;
+            i[j] = temp[j] - '0' ;
         }
     }
 
+    file.close();
+
 }
 
-void Board::writeBoard(string filename) {
+void Board::writeBoard(const string& filename) {
     fstream file;
-    file.open(filename, ios::out);
+    file.open(filename, ios::app);
 
     for(auto & i : arr){
         for(int j : i){
@@ -50,6 +51,8 @@ void Board::writeBoard(string filename) {
         file<<std::endl;
     }
     file<<std::endl;
+
+    file.close();
 }
 
 void Board::output() {

@@ -11,9 +11,10 @@ add_executable(Sudoku
         Sudoku/src/create_final.cpp
         Sudoku/src/create_game.cpp
         Sudoku/src/board.cpp
-        )
+        Sudoku/src/solve_game.cpp)
 
 add_executable(test
         Sudoku/test.cpp
         Sudoku/src/board.cpp
+        Sudoku/src/solve_game.cpp
         )
