@@ -58,7 +58,6 @@ int main(int argc, char *argv[])
             }
             option.c = true;
             option.cArg = n;
-            create_final(atoi(optarg));
             break;
         }
         // 求解数独：-s game.txt
@@ -111,6 +110,7 @@ int main(int argc, char *argv[])
         // 生成游戏的解唯一
         case 'u':
             printf("option u\n");
+            option.u = true;
             break;
         default:
             printf("the command is wrong!\n");

@@ -13,20 +13,52 @@ int getRand(int min, int max) {
     return (rand() % (max - min) + 1);
 }
 
+//TODO:判断board是否有唯一解
+bool onlyResult(Board board) {
+
+}
+
 void create_game(int n, int m, int rMin, int rMax, int u) {
     srand((int) time(nullptr));
 
-    //TODO 根据命令行参数中难度、挖空数量范围来设置blank_num
-    int blank_num = 20;                  // 挖空个数
-    for (int i = 0; i < n; i++) {
-        int final_no = getRand(0, countLines(FINAL_PATH) / 10);
-        printf("%d:%d\n", i, final_no);
-        game_generate(final_no, blank_num);
+    int blank_num;// 挖空个数
+    //根据命令行参数中难度、挖空数量范围来设置blank_num
+    if (rMin == 0 && rMax == 0) {
+        switch (m) {
+            case 0:
+                blank_num = 20;
+                break;
+            default:
+                blank_num = m * 9;
+        }
+    } else {
+        blank_num = rand() % (rMax - rMin);
     }
+
+    //生成有唯一解的game
+    if (u == 1) {
+        int count = 0;//已生成有唯一解game的数量
+        while (count < n) {
+            int final_no = getRand(0, countLines(FINAL_PATH) / 10);
+            //检查board是否有唯一解
+            Board board = game_generate(final_no, blank_num);
+            if (onlyResult(board)) {
+                printf("%d:%d\n", count, final_no);
+                count++;
+            }
+        }
+    } else {
+        for (int i = 0; i < n; i++) {
+            int final_no = getRand(0, countLines(FINAL_PATH) / 10);
+            printf("%d:%d\n", i, final_no);
+            game_generate(final_no, blank_num);
+        }
+    }
+
 }
 
 //根据终局编号final_no、挖空数量blank_num，生成一个游戏
-void game_generate(int final_no, int blank_num) {
+Board game_generate(int final_no, int blank_num) {
     Board board;
     //读出第final_no个终局
     board.readBoard(FINAL_PATH, final_no);
@@ -66,4 +98,5 @@ void game_generate(int final_no, int blank_num) {
     }
 
     board.writeBoard(GAME_PATH);
+    return board;
 }
