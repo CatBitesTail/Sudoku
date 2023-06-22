@@ -4,7 +4,7 @@
 #include "create_final.h"
 using namespace std;
 
-void output(fstream &file, int *head, int *shift)
+void output_final(fstream &file, int *head, int *shift)
 {
     for (int i = 0; i < 9; i++)
     {
@@ -12,7 +12,7 @@ void output(fstream &file, int *head, int *shift)
         file << head[j % 9];
         for (j = j + 1; j < shift[i] + 9; j++)
         {
-            file << " " << head[j % 9];
+            file << head[j % 9];
         }
         file << endl;
     }
@@ -44,7 +44,7 @@ void create_final(int n)
             // 第7~9行交换 有3!种
             for (int j = 0; j < 6; j++)
             {
-                output(file, head, shift);
+                output_final(file, head, shift);
                 if (--n <= 0)
                 {
                     file.close();

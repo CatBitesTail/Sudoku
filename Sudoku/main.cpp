@@ -1,7 +1,7 @@
 #include <iostream>
 #include <unistd.h>
-#include "include/create_final.h"
-#include "include/create_game.h"
+#include "create_final.h"
+#include "create_game.h"
 
 using namespace std;
 

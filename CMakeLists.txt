@@ -10,4 +10,10 @@ add_executable(Sudoku
         Sudoku/main.cpp
         Sudoku/src/create_final.cpp
         Sudoku/src/create_game.cpp
+        Sudoku/src/board.cpp
+        )
+
+add_executable(test
+        Sudoku/test.cpp
+        Sudoku/src/board.cpp
         )

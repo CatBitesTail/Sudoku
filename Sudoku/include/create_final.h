@@ -1,2 +1,2 @@
 void create_final(int n);
-void output(std::fstream& file, int *head, int *shift);
+void output_final(fstream &file, int *head, int *shift);

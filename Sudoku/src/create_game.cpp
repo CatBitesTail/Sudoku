@@ -16,7 +16,7 @@ int getRand(int min, int max)
 
 void create_game(int n)
 {
-    srand((int)time(NULL));
+    srand((int)time(nullptr));
 
     int blank_num = 10;                  // 挖空个数
     int *sudoku_final_line = new int[n]; // 随机选n个终局的初始行号
