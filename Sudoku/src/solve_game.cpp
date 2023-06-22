@@ -1,6 +1,5 @@
 #include <iostream>
 #include <string>
-#include <fstream>
 #include "solve_game.h"
 #include "board.h"
 

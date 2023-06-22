@@ -1,4 +1,3 @@
-#include <iostream>
 #include <ctime>
 #include "create_game.h"
 #include "board.h"
@@ -27,7 +26,7 @@ void create_game(int n, int m, int rMin, int rMax, bool u) {
             blank_num = m * 9;
         }
     } else {
-        blank_num = rand() % (rMax - rMin);
+        blank_num = rand() % (rMax - rMin) + rMin;
     }
 
     //生成有唯一解的game
@@ -39,8 +38,8 @@ void create_game(int n, int m, int rMin, int rMax, bool u) {
             //检查board是否有唯一解
             if (!((rMin == 0) && (rMax == 0))) {
                 board = game_generate(final_no, blank_num);
-                blank_num = rand() % (rMax - rMin);
-            }else{
+                blank_num = rand() % (rMax - rMin) + rMin;
+            } else {
                 board = game_generate(final_no, blank_num);
             }
             if (onlyResult(board)) {
@@ -54,8 +53,8 @@ void create_game(int n, int m, int rMin, int rMax, bool u) {
             printf("%d:%d\n", i, final_no);
             if (!((rMin == 0) && (rMax == 0))) {
                 game_generate(final_no, blank_num);
-                blank_num = rand() % (rMax - rMin);
-            }else{
+                blank_num = rand() % (rMax - rMin) + rMin;
+            } else {
                 game_generate(final_no, blank_num);
             }
         }
