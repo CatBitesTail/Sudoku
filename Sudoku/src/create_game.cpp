@@ -18,30 +18,32 @@ bool onlyResult(Board board) {
 
 }
 
-void create_game(int n, int m, int rMin, int rMax, int u) {
+void create_game(int n, int m, int rMin, int rMax, bool u) {
     srand((int) time(nullptr));
 
     int blank_num;// 挖空个数
     //根据命令行参数中难度、挖空数量范围来设置blank_num
-    if (rMin == 0 && rMax == 0) {
-        switch (m) {
-            case 0:
-                blank_num = 20;
-                break;
-            default:
-                blank_num = m * 9;
+    if ((rMin == 0) && (rMax == 0)) {
+        if (m == 0) {
+            blank_num = 20;
+        } else {
+            blank_num = m * 9;
         }
     } else {
         blank_num = rand() % (rMax - rMin);
     }
 
     //生成有唯一解的game
-    if (u == 1) {
+    if (u) {
         int count = 0;//已生成有唯一解game的数量
+        Board board;
         while (count < n) {
             int final_no = getRand(0, countLines(FINAL_PATH) / 10);
             //检查board是否有唯一解
-            Board board = game_generate(final_no, blank_num);
+            if (!((rMin == 0) && (rMax == 0))) {
+                board = game_generate(final_no, blank_num);
+                blank_num = rand() % (rMax - rMin);
+            }
             if (onlyResult(board)) {
                 printf("%d:%d\n", count, final_no);
                 count++;
@@ -51,7 +53,10 @@ void create_game(int n, int m, int rMin, int rMax, int u) {
         for (int i = 0; i < n; i++) {
             int final_no = getRand(0, countLines(FINAL_PATH) / 10);
             printf("%d:%d\n", i, final_no);
-            game_generate(final_no, blank_num);
+            if (!((rMin == 0) && (rMax == 0))) {
+                game_generate(final_no, blank_num);
+                blank_num = rand() % (rMax - rMin);
+            }
         }
     }
 
