@@ -38,3 +38,9 @@ out/
 
 ### cmake-build-debug ###
 /cmake-build-debug
+
+test.txt
+test.cpp
+test.exe
+Sudoku.exe
+sudolu_final.txt
