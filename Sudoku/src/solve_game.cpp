@@ -7,14 +7,14 @@
 using namespace std;
 
 // 检查行、列、宫是否存在重复。
-bool isValid(Board& board, int i, int j, int num) {
+bool isValid(Board& board, int row, int col, int num) {
     for (int k = 0; k < 9; k++) {
         // 判断行是否存在重复
-        if (board.arr[i][j] == num) return false;
+        if (board.arr[row][k] == num) return false;
         // 判断列是否存在重复
-        if (board.arr[i][j] == num) return false;
+        if (board.arr[k][col] == num) return false;
         // 判断 3 x 3 方框是否存在重复
-        if (board.arr[(i/3)*3 + i/3][(j/3)*3 + i%3] == num)
+        if (board.arr[(row / 3) * 3 + k / 3][(col / 3) * 3 + k % 3] == num)
             return false;
     }
     return true;
