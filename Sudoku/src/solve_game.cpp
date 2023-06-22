@@ -66,7 +66,7 @@ void solve(const string& filename){
         readOneBoard(file, board);
         bool answerExist = solveOneBoard(board, 0, 0);
         if(answerExist){
-            board.writeBoard("result.txt");
+            board.writeBoard("sudoku.txt");
         }
     }
 

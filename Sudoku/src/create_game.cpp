@@ -13,7 +13,7 @@ int getRand(int min, int max) {
     return (rand() % (max - min) + 1);
 }
 
-void create_game(int n) {
+void create_game(int n, int m, int rMin, int rMax, int u) {
     srand((int) time(nullptr));
 
     //TODO 根据命令行参数中难度、挖空数量范围来设置blank_num
