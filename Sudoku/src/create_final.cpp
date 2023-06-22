@@ -24,7 +24,7 @@ void create_final(int n)
     printf("create_final_num: %d\n", n);
 
     fstream file;
-    file.open("../Sudoku/sudoku_final.txt", ios::out);
+    file.open("sudoku_final.txt", ios::out);
     if (!file.is_open())
     {
         fprintf(stderr, "ERROR: unable to open file: sudoku_final.txt!\n");
