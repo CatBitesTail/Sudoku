@@ -7,24 +7,51 @@
 using namespace std;
 
 // 检查行、列、宫是否存在重复。
-bool checkRow(){
-
+bool isValid(Board& board, int i, int j, int num) {
+    for (int k = 0; k < 9; k++) {
+        // 判断行是否存在重复
+        if (board.arr[i][j] == num) return false;
+        // 判断列是否存在重复
+        if (board.arr[i][j] == num) return false;
+        // 判断 3 x 3 方框是否存在重复
+        if (board.arr[(i/3)*3 + i/3][(j/3)*3 + i%3] == num)
+            return false;
+    }
+    return true;
 }
 
-bool checkColumn(){
+bool solveOneBoard(Board& board, int i, int j){
+    int m = 9, n = 9;
+    // 换行
+    if (j == n) {
+        // 穷举到最后一列的话就换到下一行重新开始。
+        return solveOneBoard(board, i + 1, 0);
+    }
+    // 终止条件
+    if (i == m){
+        return true;
+    }
 
+    // 如果该位置是预设的数字，不用我们操心
+    if (board.arr[i][j] != 0) {
+        return solveOneBoard(board, i, j + 1);
+    }
+
+    for (int num = 1; num <= 9; num++) {
+        // 如果遇到不合法的数字，就跳过
+        if (!isValid(board, i, j, num))
+            continue;
+
+        board.arr[i][j] = num;
+
+        if(solveOneBoard(board, i, j + 1)){
+            return true;
+        }
+        board.arr[i][j] = 0;
+    }
+
+    return false;
 }
-
-bool checkBlock(){
-
-}
-
-void solveOneBoard(Board& board){
-    board.output();
-}
-
-
-
 
 
 void solve(const string& filename){
@@ -37,9 +64,13 @@ void solve(const string& filename){
 
     for(int i = 0; i < BoardNum; i++){
         readOneBoard(file, board);
-        solveOneBoard(board);
+        bool answerExist = solveOneBoard(board, 0, 0);
+        if(answerExist){
+            board.writeBoard("result.txt");
+        }
     }
 
+    file.close();
 }
 
 int countLines(const string& filename)
@@ -68,5 +99,7 @@ void readOneBoard(fstream& file, Board& board){
             i[j] = temp[j] - '0' ;
         }
     }
+    // 读最后一个换行符
+    getline(file, temp);
 }
 
