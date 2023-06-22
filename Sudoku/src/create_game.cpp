@@ -13,10 +13,7 @@ int getRand(int min, int max) {
     return (rand() % (max - min) + 1);
 }
 
-//TODO:判断board是否有唯一解
-bool onlyResult(Board board) {
-
-}
+bool onlyResult(Board board);
 
 void create_game(int n, int m, int rMin, int rMax, bool u) {
     srand((int) time(nullptr));
@@ -43,6 +40,8 @@ void create_game(int n, int m, int rMin, int rMax, bool u) {
             if (!((rMin == 0) && (rMax == 0))) {
                 board = game_generate(final_no, blank_num);
                 blank_num = rand() % (rMax - rMin);
+            }else{
+                board = game_generate(final_no, blank_num);
             }
             if (onlyResult(board)) {
                 printf("%d:%d\n", count, final_no);
@@ -56,6 +55,8 @@ void create_game(int n, int m, int rMin, int rMax, bool u) {
             if (!((rMin == 0) && (rMax == 0))) {
                 game_generate(final_no, blank_num);
                 blank_num = rand() % (rMax - rMin);
+            }else{
+                game_generate(final_no, blank_num);
             }
         }
     }

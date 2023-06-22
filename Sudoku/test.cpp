@@ -20,9 +20,15 @@ int main(){
 //    cout<<min<<endl;
 //    cout<<max<<endl;
 
-    char* s = (char*)"20~55";
-    char* s1 = strtok(s, "~");
-    cout<<s1<<endl;
+//    char* s = (char*)"20~55";
+//    char* s1 = strtok(s, "~");
+//    cout<<s1<<endl;
+
+    Board b;
+    for(int i=0;i<100;i++){
+        b.readBoard("sudoku_game.txt", i+1);
+        cout<<onlyResult(b)<<endl;
+    }
 
 
 
